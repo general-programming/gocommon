@@ -40,13 +40,13 @@ func CreateLogger() *zap.Logger {
 }
 
 func CtxWithLogger(ctx context.Context) context.Context {
-	return context.WithValue(ctx, LoggerKey, CreateLogger(false))
+	return context.WithValue(ctx, LoggerKey, CreateLogger())
 }
 
 func LogWithCtx(ctx context.Context) *zap.Logger {
 	logger, ok := ctx.Value(LoggerKey).(*zap.Logger)
 	if !ok {
-		return CreateLogger(false)
+		return CreateLogger()
 	}
 
 	return logger
