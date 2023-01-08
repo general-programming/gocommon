@@ -1,10 +1,17 @@
 package gocommon
 
 import (
+	"context"
 	"fmt"
 	"os"
 	"strings"
 )
+
+func CreateContext() context.Context {
+	ctx := context.WithValue(context.TODO(), LoggerKey, CreateLogger())
+
+	return ctx
+}
 
 func IsDocker() bool {
 	_, err := os.Stat("/.dockerenv")
