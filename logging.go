@@ -12,7 +12,9 @@ const (
 	LoggerKey = "K_LOGGER"
 )
 
-func CreateLogger(debug bool) *zap.Logger {
+func CreateLogger() *zap.Logger {
+	debug := GetBoolEnvWithDefault("DEBUG", false)
+
 	pe := zap.NewProductionEncoderConfig()
 	pe.EncodeTime = zapcore.ISO8601TimeEncoder
 
